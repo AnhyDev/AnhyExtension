@@ -1,8 +1,10 @@
 ### Placeholder Documentation for AnhyExtension
 
-The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that integrate with AnhyLibAPI and other plugins developed by AnhyDev. Here are the descriptions of the available placeholders and their outputs:
+The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that integrate with AnhyLibAPI and other plugins developed by AnhyDev. This extension requires the AnhyLibAPI library to be installed for all functionality.
 
-#### General Placeholders
+### Placeholders (Requires AnhyLibAPI)
+
+#### Gender-related Placeholders (Requires AnhyFamily Plugin)
 
 - **%anhy_gender%**
   - Returns the player's gender if known through the AnhyFamily plugin.
@@ -17,7 +19,7 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 - **%anhy_gender_hexcolor%**
   - Returns the HEX color code associated with the player's gender.
 
-#### Family-related Placeholders
+#### Family-related Placeholders (Requires AnhyFamily Plugin)
 
 - **%anhy_family%**
   - Returns textual information about the player's family.
@@ -34,7 +36,7 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 - **%anhy_family_tree%**
   - Returns a textual representation of the player's family tree.
 
-#### Language-related Placeholders
+#### Language-related Placeholders (Requires AnhyLibAPI)
 
 - **%anhy_lang%**
   - Returns the player's primary language.
