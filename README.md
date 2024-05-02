@@ -22,15 +22,15 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 #### Family-related Placeholders (Requires AnhyFamily Plugin)
 
 - **%anhy_family%**
-  - Returns textual information about the player's family.
+  - Returns a serialized JSON string of the player's Family object, which can be processed in any way convenient to the user.
 - **%anhy_family_mother%**
-  - Returns information about the player's mother.
+  - Returns the UUID string of the player's mother.
 - **%anhy_family_father%**
-  - Returns information about the player's father.
+  - Returns the UUID string of the player's father.
 - **%anhy_family_spouse%**
-  - Returns information about the player's spouse.
+  - Returns the UUID string of the player's spouse.
 - **%anhy_family_children%**
-  - Returns a comma-separated list of UUIDs of the player's children.
+  - Returns a comma-separated list of UUID strings of the player's children.
 - **%anhy_family_info%**
   - Returns detailed information about the player's family.
 - **%anhy_family_tree%**
