@@ -13,15 +13,30 @@ import ink.anh.family.info.FamilyTree;
 import ink.anh.family.info.InfoGenerator;
 import ink.anh.family.util.FamilyUtils;
 
+/**
+ * FamilyPAPI is responsible for handling all family-related placeholder requests.
+ * It provides functionalities to fetch and format family data for players.
+ */
 public class FamilyPAPI {
 
     private final AnhyFamily familyPlugin;
-    
-    public FamilyPAPI() {
-		this.familyPlugin = AnhyFamily.getInstance();
-	}
 
-	public String onRequest(OfflinePlayer player, String firstPart, @NotNull String params) {
+    /**
+     * Constructor that initializes the FamilyPAPI and retrieves an instance of AnhyFamily.
+     */
+    public FamilyPAPI() {
+        this.familyPlugin = AnhyFamily.getInstance();
+    }
+
+    /**
+     * Processes the request for family-related placeholders based on the specified parameters.
+     * 
+     * @param player The offline player for whom the placeholders are being requested.
+     * @param firstPart The category of the family-related placeholder (e.g., gender, family).
+     * @param params The full placeholder request string.
+     * @return A string value representing the result of the requested placeholder or an empty string if no data is found.
+     */
+    public String onRequest(OfflinePlayer player, String firstPart, @NotNull String params) {
         Family family = getFamily(player);
         
         switch (firstPart.toLowerCase()) {
@@ -36,11 +51,11 @@ public class FamilyPAPI {
             case "family_spouse":
                 return family.getSpouse() != null ? family.getSpouse().toString() : "";
             case "family_children":
-            	if (family.getChildren() != null && !family.getChildren().isEmpty()) {
-            		return family.getChildren().stream()
+                if (family.getChildren() != null && !family.getChildren().isEmpty()) {
+                    return family.getChildren().stream()
                             .map(UUID::toString)
                             .collect(Collectors.joining(","));
-            	}
+                }
                 return "";
             case "family_info":
                 return InfoGenerator.generateFamilyInfo(family);
@@ -51,15 +66,21 @@ public class FamilyPAPI {
         }
     }
 
+    /**
+     * Retrieves a Family object for the given player, either as an online player or via their UUID if offline.
+     * 
+     * @param player The player whose family data is to be retrieved.
+     * @return A Family object representing the player's family, or null if none exists.
+     */
     private Family getFamily(OfflinePlayer player) {
-    	Family family = null;
-    	if (player.isOnline()) {
-    		family = FamilyUtils.getFamily((Player) player);
-    	}
-    	
-    	if (family == null) {
-    		family = FamilyUtils.getFamily(player.getUniqueId());
-    	}
-		return family;
+        Family family = null;
+        if (player.isOnline()) {
+            family = FamilyUtils.getFamily((Player) player);
+        }
+        
+        if (family == null) {
+            family = FamilyUtils.getFamily(player.getUniqueId());
+        }
+        return family;
     }
 }
