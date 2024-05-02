@@ -7,7 +7,7 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 #### Gender-related Placeholders (Requires AnhyFamily Plugin)
 
 - **%anhy_gender%**
-  - Returns the player's gender if known through the AnhyFamily plugin.
+  - Returns the player's gender.
 - **%anhy_gender_key%**
   - Returns the language file key for the player's gender.
 - **%anhy_gender_lang%**
