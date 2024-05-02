@@ -2,7 +2,7 @@
 
 The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that integrate with AnhyLibAPI and other plugins developed by AnhyDev. This extension requires the AnhyLibAPI library to be installed for all functionality.
 
-### Placeholders (Requires AnhyLibAPI)
+### Placeholders List (Requires AnhyLibAPI)
 
 #### Gender-related Placeholders (Requires AnhyFamily Plugin)
 
