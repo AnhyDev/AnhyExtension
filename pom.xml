@@ -9,7 +9,7 @@
   <artifactId>AnhyExtension</artifactId>
   <version>1.0.0</version>
   <name>AnhyExtension</name>
-
+      
     <build>
         <plugins>
             <plugin>
@@ -24,7 +24,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.5.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -38,7 +38,6 @@
                                 </transformer>
                             </transformers>
                             <relocations>
-                                <!-- Ваші relocations -->
                             </relocations>
                             <filters>
                                 <filter>
@@ -56,6 +55,20 @@
                                 </filter>
                             </filters>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -115,7 +128,7 @@
         <dependency>
 	    	<groupId>com.github.AnhyDev</groupId>
 	    	<artifactId>AnhyFamily</artifactId>
-	    	<version>v0.0.1</version>
+	    	<version>v0.0.3</version>
             <scope>provided</scope>
 		</dependency>
 		

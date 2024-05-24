@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import ink.anh.family.AnhyFamily;
-import ink.anh.family.common.Family;
+import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.info.FamilyTree;
 import ink.anh.family.info.InfoGenerator;
 import ink.anh.family.util.FamilyUtils;
@@ -37,7 +37,7 @@ public class FamilyPAPI {
      * @return A string value representing the result of the requested placeholder or an empty string if no data is found.
      */
     public String onRequest(OfflinePlayer player, String firstPart, @NotNull String params) {
-        Family family = getFamily(player);
+    	PlayerFamily family = getFamily(player);
         
         switch (firstPart.toLowerCase()) {
             case "gender":
@@ -58,7 +58,7 @@ public class FamilyPAPI {
                 }
                 return "";
             case "family_info":
-                return InfoGenerator.generateFamilyInfo(family);
+                return new InfoGenerator(familyPlugin).generateFamilyInfo(family);
             case "family_tree":
                 return new FamilyTree(family).buildFamilyTreeString();
             default:
@@ -72,8 +72,8 @@ public class FamilyPAPI {
      * @param player The player whose family data is to be retrieved.
      * @return A Family object representing the player's family, or null if none exists.
      */
-    private Family getFamily(OfflinePlayer player) {
-        Family family = null;
+    private PlayerFamily getFamily(OfflinePlayer player) {
+    	PlayerFamily family = null;
         if (player.isOnline()) {
             family = FamilyUtils.getFamily((Player) player);
         }

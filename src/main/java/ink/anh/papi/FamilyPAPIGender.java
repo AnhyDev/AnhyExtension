@@ -8,7 +8,7 @@ import ink.anh.api.LibraryManager;
 import ink.anh.api.lingo.Translator;
 import ink.anh.api.utils.LangUtils;
 import ink.anh.family.AnhyFamily;
-import ink.anh.family.common.Family;
+import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.gender.Gender;
 
 /**
@@ -36,7 +36,7 @@ public class FamilyPAPIGender {
      * @param params A string specifying the type of gender-related data requested.
      * @return The requested gender information or {@code null} if not applicable or unavailable.
      */
-    public String onRequestGender(OfflinePlayer player, Family family, @NotNull String params) {
+    public String onRequestGender(OfflinePlayer player, PlayerFamily family, @NotNull String params) {
         switch (params.toLowerCase()) {
             case "gender":
                 return getGenderType(family);
@@ -55,27 +55,27 @@ public class FamilyPAPIGender {
         }
     }
 
-    private String getGenderType(Family family) {
+    private String getGenderType(PlayerFamily family) {
         Gender gender = getGender(family);
         return gender != null ? gender.name() : null;
     }
 
-    private String getGenderLangKey(Family family) {
+    private String getGenderLangKey(PlayerFamily family) {
         Gender gender = getGender(family);
         return gender != null ? Gender.getKey(gender) : null;
     }
 
-    private String getGenderHEXColor(Family family) {
+    private String getGenderHEXColor(PlayerFamily family) {
         Gender gender = getGender(family);
         return gender != null ? Gender.getColor(gender) : null;
     }
 
-    private String getGenderMCColor(Family family) {
+    private String getGenderMCColor(PlayerFamily family) {
         Gender gender = getGender(family);
         return gender != null ? Gender.getMinecraftColor(gender) : null;
     }
 
-    private String getGenderSymbol(Family family) {
+    private String getGenderSymbol(PlayerFamily family) {
         Gender gender = getGender(family);
         return gender != null ? Gender.getSymbol(gender) : null;
     }
@@ -87,7 +87,7 @@ public class FamilyPAPIGender {
      * @param family The family data of the player.
      * @return The translated name of the gender if available; otherwise, {@code null}.
      */
-    private String getGenderLangName(OfflinePlayer player, Family family) {
+    private String getGenderLangName(OfflinePlayer player, PlayerFamily family) {
         Gender gender = getGender(family);
         if (gender == null) {
             return null;
@@ -95,7 +95,7 @@ public class FamilyPAPIGender {
         return Translator.translateKyeWorld(libraryManager, Gender.getKey(gender) , langs(player));
     }
 
-    private Gender getGender(Family family) {
+    private Gender getGender(PlayerFamily family) {
         return family != null ? family.getGender() : null;
     }
 
