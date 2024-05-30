@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import ink.anh.api.LibraryManager;
 import ink.anh.api.lingo.Translator;
 import ink.anh.api.utils.LangUtils;
-import ink.anh.family.AnhyFamily;
+import ink.anh.family.GlobalManager;
 import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.gender.Gender;
 
@@ -24,8 +24,8 @@ public class FamilyPAPIGender {
      *
      * @param familyPlugin The AnhyFamily plugin instance.
      */
-    public FamilyPAPIGender(AnhyFamily familyPlugin) {
-        this.libraryManager = familyPlugin.getGlobalManager();
+    public FamilyPAPIGender() {
+        this.libraryManager = GlobalManager.getInstance();
     }
 
     /**

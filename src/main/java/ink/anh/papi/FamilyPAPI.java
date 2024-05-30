@@ -7,7 +7,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import ink.anh.family.AnhyFamily;
 import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.info.FamilyTree;
 import ink.anh.family.info.InfoGenerator;
@@ -19,13 +18,10 @@ import ink.anh.family.util.FamilyUtils;
  */
 public class FamilyPAPI {
 
-    private final AnhyFamily familyPlugin;
-
     /**
      * Constructor that initializes the FamilyPAPI and retrieves an instance of AnhyFamily.
      */
     public FamilyPAPI() {
-        this.familyPlugin = AnhyFamily.getInstance();
     }
 
     /**
@@ -41,7 +37,7 @@ public class FamilyPAPI {
         
         switch (firstPart.toLowerCase()) {
             case "gender":
-                return new FamilyPAPIGender(familyPlugin).onRequestGender(player, family, params);
+                return new FamilyPAPIGender().onRequestGender(player, family, params);
             case "family":
                 return family.toString();
             case "family_mother":
@@ -58,7 +54,7 @@ public class FamilyPAPI {
                 }
                 return "";
             case "family_info":
-                return new InfoGenerator(familyPlugin).generateFamilyInfo(family);
+                return new InfoGenerator().generateFamilyInfo(family);
             case "family_tree":
                 return new FamilyTree(family).buildFamilyTreeString();
             default:
