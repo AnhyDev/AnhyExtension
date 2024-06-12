@@ -9,7 +9,7 @@ import ink.anh.api.lingo.Translator;
 import ink.anh.api.utils.LangUtils;
 import ink.anh.family.GlobalManager;
 import ink.anh.family.fplayer.PlayerFamily;
-import ink.anh.family.gender.Gender;
+import ink.anh.family.fplayer.gender.Gender;
 
 /**
  * Handles all gender-related placeholder requests for the family system, providing details such as

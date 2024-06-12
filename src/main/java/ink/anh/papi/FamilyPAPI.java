@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import ink.anh.family.fplayer.PlayerFamily;
-import ink.anh.family.info.FamilyTree;
-import ink.anh.family.info.InfoGenerator;
+import ink.anh.family.fplayer.info.FamilyTree;
+import ink.anh.family.fplayer.info.InfoGenerator;
 import ink.anh.family.util.FamilyUtils;
 
 /**
