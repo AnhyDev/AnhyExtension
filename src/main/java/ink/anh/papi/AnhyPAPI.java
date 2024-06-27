@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
 import ink.anh.api.AnhyLibAPI;
 import ink.anh.api.utils.LangUtils;
 
@@ -43,6 +42,15 @@ public class AnhyPAPI {
      */
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         String placeholder = "";
+        
+        // Handle dynamic placeholders prefixed with "@"
+        if (params.startsWith("@")) {
+            String dynamicPart = params.substring(1);
+            if (AnhyExtension.checkPluginExist("AnhyLingo", "ink.anh.lingo.AnhyLingo")) {
+                placeholder = new AnhyLingoPAPI().onRequest(player, dynamicPart);
+                return placeholder;
+            }
+        }
 
         // Extract the first part of the request to determine the type of placeholder being queried
         String firstPart = AnhyExtension.getFirstPart(params);
