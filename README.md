@@ -46,6 +46,6 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 #### Dynamic Language Placeholders (Requires AnhyLingo Plugin)
 
 - `%anhy_@language_key%`
-  - The prefix `%anhy_@` is used for dynamic language placeholders. Following the prefix is the language key, whose translation is stored in the AnhyLingo plugin folder located at `plugins/AnhyLingo/system/мовні-файли` on the server. This placeholder dynamically determines the player's chosen language and returns the translation for the specified key in the player's language.
+  - The prefix `%anhy_@` is used for dynamic language placeholders. Following the prefix is the language key, whose translation is stored in the AnhyLingo plugin folder located at `plugins/AnhyLingo/system/language_files...` on the server. This placeholder dynamically determines the player's chosen language and returns the translation for the specified key in the player's language.
 
 ---
