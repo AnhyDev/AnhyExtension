@@ -17,6 +17,10 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 
 #### Family-related Placeholders (Requires AnhyFamily Plugin)
 
+- `%anhy_family_firstname%`
+  - Returns the player's first name.
+- `%anhy_family_lastname%`
+  - Returns the player's last name based on gender.
 - `%anhy_family%`
   - Returns a serialized JSON string of the player's Family object, which can be processed in any way convenient to the user.
 - `%anhy_family_mother%`

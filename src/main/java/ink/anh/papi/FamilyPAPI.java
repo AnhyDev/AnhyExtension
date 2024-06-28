@@ -12,6 +12,7 @@ import ink.anh.api.utils.LangUtils;
 import ink.anh.api.utils.StringUtils;
 import ink.anh.family.GlobalManager;
 import ink.anh.family.fplayer.PlayerFamily;
+import ink.anh.family.fplayer.gender.Gender;
 import ink.anh.family.fplayer.info.FamilyTree;
 import ink.anh.family.fplayer.info.InfoGenerator;
 import ink.anh.family.util.FamilyUtils;
@@ -65,6 +66,10 @@ public class FamilyPAPI {
      */
     private String handleFamilyPlaceholder(Player player, PlayerFamily family, String params) {
         switch (params) {
+        case "family_firstname":
+            return family.getFirstName();
+        case "family_lastname":
+            return getActualLastName(family.getLastName(), family.getGender());
             case "family_mother":
                 return family.getMother() != null ? family.getMother().toString() : "";
             case "family_father":
@@ -119,5 +124,17 @@ public class FamilyPAPI {
      */
     private String[] langs(Player player) {
         return player.isOnline() ? LangUtils.getPlayerLanguage((Player) player) : new String[] {libraryManager.getDefaultLang()};
+    }
+    
+    private String getActualLastName(String[] lastName, Gender gender) {
+    	if (lastName == null) return "";
+    	
+        if (gender == Gender.MALE) {
+            return lastName[0] != null ? lastName[0] : "";
+        } else if (gender == Gender.FEMALE && lastName.length > 1 && lastName[1] != null && !lastName[1].isEmpty()) {
+            return lastName[1];
+        } else {
+            return lastName[0] != null ? lastName[0] : "";
+        }
     }
 }
