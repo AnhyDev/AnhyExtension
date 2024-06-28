@@ -43,8 +43,6 @@ The **AnhyExtension** for PlaceholderAPI provides a series of placeholders that 
 - `%anhy_langs%`
   - Returns all languages set for the player, formatted as a comma-separated string.
 
-These placeholders can be used in any text that supports PlaceholderAPI, enabling dynamic display of player information on your server. Utilizing these placeholders facilitates easy integration of detailed player information into Minecraft through other plugins or chat systems.
-
 #### Dynamic Language Placeholders (Requires AnhyLingo Plugin)
 
 - `%anhy_@language_key%`
