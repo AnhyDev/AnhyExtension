@@ -1,10 +1,7 @@
 package ink.anh.papi;
 
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import ink.anh.api.AnhyLibAPI;
 import ink.anh.api.utils.LangUtils;
 
 /**
@@ -12,25 +9,6 @@ import ink.anh.api.utils.LangUtils;
  * supporting various functionalities depending on the type of request and the state of the player.
  */
 public class AnhyPAPI {
-
-    private AnhyLibAPI anhyPlugin;
-
-    /**
-     * Constructs an AnhyPAPI object and initializes plugin registration check.
-     */
-    public AnhyPAPI() {
-        canRegister();
-    }
-
-    /**
-     * Checks if the AnhyLibAPI plugin is properly loaded and available on the server.
-     *
-     * @return {@code true} if AnhyLibAPI is available, otherwise {@code false}.
-     */
-    public boolean canRegister() {
-        anhyPlugin = (AnhyLibAPI) Bukkit.getPluginManager().getPlugin("AnhyLibAPI");
-        return anhyPlugin != null;
-    }
     
     /**
      * Handles placeholder requests and provides the relevant data based on the requested type.
@@ -40,7 +18,7 @@ public class AnhyPAPI {
      * @param params The parameters defining the type and specifics of the request.
      * @return A string representing the requested placeholder value or an empty string if not applicable.
      */
-    public String onRequest(OfflinePlayer player, @NotNull String params) {
+    public String onRequest(Player player, @NotNull String params) {
         String placeholder = "";
         
         // Handle dynamic placeholders prefixed with "@"

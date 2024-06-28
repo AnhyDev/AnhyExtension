@@ -11,6 +11,7 @@
   <name>AnhyExtension</name>
       
     <build>
+		<finalName>Expansion-anhy</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

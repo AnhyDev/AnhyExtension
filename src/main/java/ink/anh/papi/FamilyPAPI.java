@@ -3,10 +3,14 @@ package ink.anh.papi;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import ink.anh.api.LibraryManager;
+import ink.anh.api.lingo.Translator;
+import ink.anh.api.utils.LangUtils;
+import ink.anh.api.utils.StringUtils;
+import ink.anh.family.GlobalManager;
 import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.fplayer.info.FamilyTree;
 import ink.anh.family.fplayer.info.InfoGenerator;
@@ -18,10 +22,13 @@ import ink.anh.family.util.FamilyUtils;
  */
 public class FamilyPAPI {
 
+    private final LibraryManager libraryManager;
+
     /**
      * Constructor that initializes the FamilyPAPI and retrieves an instance of AnhyFamily.
      */
     public FamilyPAPI() {
+        this.libraryManager = GlobalManager.getInstance();
     }
 
     /**
@@ -32,14 +39,32 @@ public class FamilyPAPI {
      * @param params The full placeholder request string.
      * @return A string value representing the result of the requested placeholder or an empty string if no data is found.
      */
-    public String onRequest(OfflinePlayer player, String firstPart, @NotNull String params) {
-    	PlayerFamily family = getFamily(player);
-        
+    public String onRequest(Player player, String firstPart, @NotNull String params) {
+        PlayerFamily family = getFamily(player);
+
+        if (family == null) {
+            return "";
+        }
+
         switch (firstPart.toLowerCase()) {
             case "gender":
                 return new FamilyPAPIGender().onRequestGender(player, family, params);
             case "family":
+                return handleFamilyPlaceholder(player, family, params.toLowerCase());
+            default:
                 return family.toString();
+        }
+    }
+
+    /**
+     * Handles the processing of family-related placeholders.
+     * 
+     * @param family The player's family object.
+     * @param params The specific family-related placeholder request.
+     * @return The result of the family placeholder request.
+     */
+    private String handleFamilyPlaceholder(Player player, PlayerFamily family, String params) {
+        switch (params) {
             case "family_mother":
                 return family.getMother() != null ? family.getMother().toString() : "";
             case "family_father":
@@ -55,10 +80,16 @@ public class FamilyPAPI {
                 return "";
             case "family_info":
                 return new InfoGenerator().generateFamilyInfo(family);
+            case "family_info_translated":
+                return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, new InfoGenerator().generateFamilyInfo(family),
+            			langs(player)), new String[]{}));
             case "family_tree":
                 return new FamilyTree(family).buildFamilyTreeString();
+            case "family_tree_translated":
+                return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, new FamilyTree(family).buildFamilyTreeString(),
+            			langs(player)), new String[]{}));
             default:
-                return null;
+                return family.toString();
         }
     }
 
@@ -68,15 +99,25 @@ public class FamilyPAPI {
      * @param player The player whose family data is to be retrieved.
      * @return A Family object representing the player's family, or null if none exists.
      */
-    private PlayerFamily getFamily(OfflinePlayer player) {
-    	PlayerFamily family = null;
+    private PlayerFamily getFamily(Player player) {
+        PlayerFamily family = null;
         if (player.isOnline()) {
             family = FamilyUtils.getFamily((Player) player);
         }
-        
+
         if (family == null) {
             family = FamilyUtils.getFamily(player.getUniqueId());
         }
         return family;
+    }
+
+    /**
+     * Returns the language settings for the player, defaulting to the system's default language if offline.
+     *
+     * @param player The player whose language settings are queried.
+     * @return An array of language codes.
+     */
+    private String[] langs(Player player) {
+        return player.isOnline() ? LangUtils.getPlayerLanguage((Player) player) : new String[] {libraryManager.getDefaultLang()};
     }
 }

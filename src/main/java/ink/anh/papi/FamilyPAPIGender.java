@@ -1,6 +1,5 @@
 package ink.anh.papi;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,8 +20,6 @@ public class FamilyPAPIGender {
 
     /**
      * Constructor that initializes the FamilyPAPIGender with access to the global library manager from AnhyFamily.
-     *
-     * @param familyPlugin The AnhyFamily plugin instance.
      */
     public FamilyPAPIGender() {
         this.libraryManager = GlobalManager.getInstance();
@@ -36,7 +33,7 @@ public class FamilyPAPIGender {
      * @param params A string specifying the type of gender-related data requested.
      * @return The requested gender information or {@code null} if not applicable or unavailable.
      */
-    public String onRequestGender(OfflinePlayer player, PlayerFamily family, @NotNull String params) {
+    public String onRequestGender(Player player, PlayerFamily family, @NotNull String params) {
         switch (params.toLowerCase()) {
             case "gender":
                 return getGenderType(family);
@@ -87,7 +84,7 @@ public class FamilyPAPIGender {
      * @param family The family data of the player.
      * @return The translated name of the gender if available; otherwise, {@code null}.
      */
-    private String getGenderLangName(OfflinePlayer player, PlayerFamily family) {
+    private String getGenderLangName(Player player, PlayerFamily family) {
         Gender gender = getGender(family);
         if (gender == null) {
             return null;
@@ -105,7 +102,7 @@ public class FamilyPAPIGender {
      * @param player The player whose language settings are queried.
      * @return An array of language codes.
      */
-    private String[] langs(OfflinePlayer player) {
+    private String[] langs(Player player) {
         return player.isOnline() ? LangUtils.getPlayerLanguage((Player) player) : new String[] {libraryManager.getDefaultLang()};
     }
 }

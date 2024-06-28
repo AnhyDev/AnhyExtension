@@ -1,7 +1,7 @@
 package ink.anh.papi;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -12,6 +12,8 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
  * This class ensures the extension's compatibility and handles placeholder requests.
  */
 public class AnhyExtension extends PlaceholderExpansion {
+
+    private static final String IDENTIFIER = "anhy";
 
     /**
      * Checks if the AnhyLibAPI plugin is available and can be registered.
@@ -50,7 +52,7 @@ public class AnhyExtension extends PlaceholderExpansion {
      */
     @Override
     public String getIdentifier() {
-        return "anhy";
+        return IDENTIFIER;
     }
 
     /**
@@ -81,7 +83,7 @@ public class AnhyExtension extends PlaceholderExpansion {
      * @return A string result of the placeholder request or an error message if applicable.
      */
     @Override
-    public String onRequest(OfflinePlayer player, @NotNull String params) {
+    public String onPlaceholderRequest(Player player, @NotNull String params) {
         if (params.isEmpty()) {
             return "AnhyExtension is an extension for the PlaceholderAPI plugin that enables the use of placeholders from plugins developed by AnhyDev, which are built on the AnhyLibAPI, also created by the same developer.";
         }

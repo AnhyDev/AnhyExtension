@@ -1,6 +1,5 @@
 package ink.anh.papi;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import ink.anh.api.LibraryManager;
@@ -33,7 +32,7 @@ public class AnhyLingoPAPI {
      * @param dynamicPart The dynamic part of the placeholder.
      * @return A string representing the requested dynamic placeholder value or an empty string if not applicable.
      */
-    public String onRequest(OfflinePlayer player, @NotNull String dynamicPart) {
+    public String onRequest(Player player, @NotNull String dynamicPart) {
         try {
             String[] langs = langs(player);
             return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, dynamicPart, langs), new String[]{player.getName()}));
@@ -49,7 +48,7 @@ public class AnhyLingoPAPI {
      * @param player The player whose language settings are queried.
      * @return An array of language codes.
      */
-    private String[] langs(OfflinePlayer player) {
+    private String[] langs(Player player) {
         return player.isOnline() ? LangUtils.getPlayerLanguage((Player) player) : new String[] {libraryManager.getDefaultLang()};
     }
 }
