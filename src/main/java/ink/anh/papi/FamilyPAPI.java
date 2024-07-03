@@ -13,8 +13,8 @@ import ink.anh.api.utils.StringUtils;
 import ink.anh.family.GlobalManager;
 import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.fplayer.gender.Gender;
-import ink.anh.family.fplayer.info.FamilyTree;
-import ink.anh.family.fplayer.info.InfoGenerator;
+import ink.anh.family.fplayer.info.ProfileStringGenerator;
+import ink.anh.family.fplayer.info.TreeStringGenerator;
 import ink.anh.family.util.FamilyUtils;
 
 /**
@@ -84,14 +84,14 @@ public class FamilyPAPI {
                 }
                 return "";
             case "family_info":
-                return new InfoGenerator().generateFamilyInfo(family);
+                return new ProfileStringGenerator().generateFamilyInfo(family);
             case "family_info_translated":
-                return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, new InfoGenerator().generateFamilyInfo(family),
+                return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, new ProfileStringGenerator().generateFamilyInfo(family),
             			langs(player)), new String[]{}));
             case "family_tree":
-                return new FamilyTree(family).buildFamilyTreeString();
+                return new TreeStringGenerator(family).buildFamilyTreeString();
             case "family_tree_translated":
-                return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, new FamilyTree(family).buildFamilyTreeString(),
+                return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, new TreeStringGenerator(family).buildFamilyTreeString(),
             			langs(player)), new String[]{}));
             default:
                 return family.toString();
