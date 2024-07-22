@@ -34,8 +34,25 @@ public class AnhyLingoPAPI {
      */
     public String onRequest(Player player, @NotNull String dynamicPart) {
         try {
+            // Check if the dynamic part contains additional parameters separated by ",,"
+            String[] parts = dynamicPart.split("@", 2);
+            String key = parts[0];
+            
+            String[] placeholders;
+            if (parts.length > 1) {
+                String[] rawPlaceholders = parts[1].split(",,");
+                placeholders = new String[rawPlaceholders.length];
+                
+                String[] langs = langs(player);
+                for (int i = 0; i < rawPlaceholders.length; i++) {
+                    placeholders[i] = StringUtils.colorize(Translator.translateKyeWorld(libraryManager, rawPlaceholders[i], langs));
+                }
+            } else {
+                placeholders = new String[]{player.getName()};
+            }
+            
             String[] langs = langs(player);
-            return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, dynamicPart, langs), new String[]{player.getName()}));
+            return StringUtils.colorize(StringUtils.formatString(Translator.translateKyeWorld(libraryManager, key, langs), placeholders));
         } catch (Exception e) {
             e.printStackTrace();
             return dynamicPart;
