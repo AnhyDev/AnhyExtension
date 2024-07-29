@@ -11,11 +11,11 @@ import ink.anh.api.lingo.Translator;
 import ink.anh.api.utils.LangUtils;
 import ink.anh.api.utils.StringUtils;
 import ink.anh.family.GlobalManager;
+import ink.anh.family.fplayer.FamilyUtils;
 import ink.anh.family.fplayer.PlayerFamily;
 import ink.anh.family.fplayer.gender.Gender;
 import ink.anh.family.fplayer.info.ProfileStringGenerator;
-import ink.anh.family.fplayer.info.TreeStringGenerator;
-import ink.anh.family.util.FamilyUtils;
+import ink.anh.family.fplayer.info.TreeStringGenerator;;
 
 /**
  * FamilyPAPI is responsible for handling all family-related placeholder requests.
