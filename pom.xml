@@ -129,7 +129,7 @@
         <dependency>
 	    	<groupId>com.github.AnhyDev</groupId>
 	    	<artifactId>AnhyFamily</artifactId>
-	    	<version>v0.0.2-8</version>
+	    	<version>v1.0.0</version>
             <scope>provided</scope>
 		</dependency>
         

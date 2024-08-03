@@ -30,10 +30,24 @@ public class AnhyPAPI {
             }
         }
 
+        if (params.startsWith("@")) {
+            String dynamicPart = params.substring(1);
+            if (AnhyExtension.checkPluginExist("AnhyLingo", "ink.anh.lingo.AnhyLingo")) {
+                placeholder = new AnhyLingoPAPI().onRequest(player, dynamicPart);
+                return placeholder;
+            }
+        }
+
         // Extract the first part of the request to determine the type of placeholder being queried
         String firstPart = AnhyExtension.getFirstPart(params);
         
         switch (firstPart.toLowerCase()) {
+        case "give":
+            if (AnhyExtension.checkPluginExist("AnhyLingo", "ink.anh.lingo.AnhyLingo")) {
+                placeholder = new AnhyLingoPAPI().handleGiveCommand(player, params);
+                return placeholder;
+            }
+            break;
             case "gender":
             case "family":
                 // Process family-related placeholders if the Family plugin is present
